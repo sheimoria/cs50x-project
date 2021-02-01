@@ -1,0 +1,146 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+
+    <div class="row justify-content-end">
+
+        <div class="col-sm-4">
+
+            <div class="table-responsive mb-4">
+
+                <table class="table table-striped table-dark text-success">
+
+                    <thead>
+                        <tr>
+                            <th>Balance</th>
+                            <th>{{ balance | sgd }}</th>
+                        </tr>
+                    </thead>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row mb-4">
+
+        <div class="col-sm-4">
+
+            <h5 class="text-left mb-4"> Add Transaction </h5>
+
+            <form action="/add" method="post">
+
+                <div class="input-group mb-4">
+                    <input type="text" class="form-control text-white bg-dark" name="description" aria-label="Description" placeholder="Description">
+                </div>
+
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-white bg-dark">$</span>
+                    </div>
+                        <input type="text" class="form-control text-white bg-dark" name="amount" aria-label="Amount" placeholder="Amount">
+                </div>
+
+                <div class="input-group mb-4">
+                    <select class="custom-select text-white bg-dark" name="tag">
+                        <option selected disabled class="text-white-50 bg-dark">Tag</option>
+                        {% for tag in tags %}
+                            <option>{{ tag }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-group mb-4">
+                    <input type="text" class="form-control text-white bg-dark" name="date" aria-label="Date (YYYY-MM-DD)" placeholder="Date (YYYY-MM-DD)">
+                </div>
+
+                <button class="btn btn-success" type="submit">Add Transaction</button>
+
+            </form>
+
+        </div>
+
+        <div class="col-sm-8">
+
+            <h5 class="text-left mb-4"> Recent Transactions </h5>
+
+            <table class="table table-striped table-dark">
+
+                <thead class="bg-success">
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Tag</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for transaction in transactions %}
+
+                        <tr>
+                            <td>{{ transaction.description }}</td>
+                            {% if transaction.tag == "Income" %}
+                                <td class="text-success">{{ transaction.amount | sgd }}</td>
+                            {% else %}
+                                <td class="text-danger">{{ transaction.amount | sgd }}</td>
+                            {% endif %}
+                            <td>{{ transaction.tag }}</td>
+                            <td>{{ transaction.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm">
+
+            <h5 class="text-left mb-4"> Monthly Report </h5>
+
+            <div class="table-responsive">
+
+                <table class="table table-striped table-dark">
+
+                    <thead class="bg-success">
+                        <tr>
+                            <th>Tags</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for summary in summaries %}
+                            <tr>
+                                <td>{{ summary.tag }}</td>
+                                {% if summary.tag == "Income" %}
+                                    <td class="text-success">{{ summary.total_amount | sgd }}</td>
+                                {% else %}
+                                    <td class="text-danger">{{ summary.total_amount | sgd }}</td>
+                                {% endif %}
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
