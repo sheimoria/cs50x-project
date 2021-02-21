@@ -27,7 +27,7 @@ Besides that, the website also contains other features such as changing password
 All in all, this project was really fun to make, much like the entire course, and I will definitely use my product, along with my newly acquired knowledge in computing, in the future.
 
 
-Built using [Bootstrap](https://getbootstrap.com/), [Flask](https://flask.palletsprojects.com/en/1.1.x/) and the [Google Sheets API](https://developers.google.com/sheets/api). Hosted on [Heroku](https://dashboard.heroku.com/apps).
+Built using [Bootstrap](https://getbootstrap.com/), [Flask](https://flask.palletsprojects.com/en/1.1.x/) and MySQL. Hosted on [Heroku](https://dashboard.heroku.com/apps).
 
 
 Thank you to the entire course team, especially all the lecturers (who are quite simply the BEST). Stay safe everyone. This was CS50!
