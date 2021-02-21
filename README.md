@@ -1,5 +1,5 @@
 # Ledg.io
-Ledg.io is personal finance tracker on the web.
+[Ledg.io](https://ledgio.herokuapp.com/login) is personal finance tracker on the web.
 
 
 Inspired by the newfound skills I gained from CS50x's web development track, I wanted to recreate a full stack with CRUD capabilities that would be useful to me as 
